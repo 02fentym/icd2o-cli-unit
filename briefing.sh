@@ -2,10 +2,19 @@
 # ICD2O CLI Unit - Bank Heist - Level 1: Casing the Building
 # Commands used: ls, cd, cat
 
-# Reset - wipe everything in this folder except this script itself
-# (uses $0 so this works no matter what this file is named)
-SCRIPT_NAME=$(basename "$0")
-find . -mindepth 1 -maxdepth 1 ! -name "$SCRIPT_NAME" -exec rm -rf {} +
+# Relocate to a safe spot before doing anything else. This guarantees
+# the script always runs from home, no matter where it was downloaded
+# and started from - and means the reset step below can never delete
+# the very file that's currently running.
+if [ -z "$RELOCATED" ]; then
+  cp "$0" /tmp/_level.sh
+  cd ~ || exit 1
+  RELOCATED=1 exec bash /tmp/_level.sh
+fi
+
+# Reset - wipe everything in home. Safe now, since this script is
+# actually running from /tmp, not from anywhere inside home.
+find ~ -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 
 # Build the world
 mkdir -p job/lobby/front_desk
@@ -41,11 +50,15 @@ echo "COMMANDS YOU KNOW SO FAR
 
 LOADING THE NEXT LEVEL
 Once you find this level's secret keyword hidden somewhere in these
-files, run these two commands (swap KEYWORD for the real word,
-all lowercase, no spaces):
+files, run these THREE commands in order (swap KEYWORD for the real
+word, all lowercase, no spaces):
 
+cd ~
 curl -O https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/KEYWORD.sh
-bash KEYWORD.sh" > job/cheatsheet.txt
+bash KEYWORD.sh
+
+Always run 'cd ~' first, even if you think you're already home.
+Skipping this step will scramble the next level." > job/cheatsheet.txt
 
 echo "Just a dusty front desk. Old memos about parking passes.
 
@@ -87,6 +100,7 @@ panel is a note from your crew's inside contact:
 'Once you're set up, the next move is codenamed blackbird. Bring
 that word to the safehouse.'" > job/basement/vault_prep/blueprint.txt
 
+cd ~
 clear
 echo "=========================================="
 echo "   FIRST NATIONAL TRUST - after hours"
