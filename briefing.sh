@@ -28,7 +28,24 @@ Three commands are all you need tonight:
 Some rooms are dead ends. If a note tells you to go back, use:
 cd ..
 
+Type 'cat cheatsheet.txt' any time to see a reminder of everything
+you know so far.
+
 Good luck." > job/start_here.txt
+
+echo "COMMANDS YOU KNOW SO FAR
+- ls              list what's in the folder you're standing in
+- cd foldername   move into a folder
+- cd ..           step back up one level
+- cat filename    read a file's contents
+
+LOADING THE NEXT LEVEL
+Once you find this level's secret keyword hidden somewhere in these
+files, run these two commands (swap KEYWORD for the real word,
+all lowercase, no spaces):
+
+curl -O https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/KEYWORD.sh
+bash KEYWORD.sh" > job/cheatsheet.txt
 
 echo "Just a dusty front desk. Old memos about parking passes.
 
@@ -67,8 +84,8 @@ echo "The boiler room. Loud, hot, and full of pipes.
 echo "You found it - the vault prep room. Taped under a loose floor
 panel is a note from your crew's inside contact:
 
-'Once you're set up, the next move is codenamed blackbird. Bring that
-word to the safehouse.'" > job/basement/vault_prep/blueprint.txt
+'Once you're set up, the next move is codenamed blackbird. Bring
+that word to the safehouse.'" > job/basement/vault_prep/blueprint.txt
 
 clear
 echo "=========================================="
