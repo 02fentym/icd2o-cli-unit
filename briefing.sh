@@ -67,7 +67,7 @@ echo "The boiler room. Loud, hot, and full of pipes.
 echo "You found it - the vault prep room. Taped under a loose floor
 panel is a note from your crew's inside contact:
 
-'Once you're set up, the next move is codenamed BLACKBIRD. Bring that
+'Once you're set up, the next move is codenamed blackbird. Bring that
 word to the safehouse.'" > job/basement/vault_prep/blueprint.txt
 
 clear
