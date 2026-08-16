@@ -12,13 +12,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" | bash
+curl -s https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh > "$HOME/cli-course/lesson2.sh"
+bash "$HOME/cli-course/lesson2.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" | bash
+curl -s https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh > "$HOME/cli-course/lesson3.sh"
+bash "$HOME/cli-course/lesson3.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
