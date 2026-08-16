@@ -1,0 +1,138 @@
+#!/bin/bash
+COURSE_DIR="$HOME/cli-course"
+WORKSPACE_DIR="$COURSE_DIR/workspace"
+mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+
+cat > "$COURSE_DIR/lesson" <<'HELPER'
+#!/bin/bash
+printf '\033[H\033[2J\033[3J\n'
+cat "$HOME/cli-course/lesson.txt"
+HELPER
+
+cat > "$COURSE_DIR/resetlesson" <<'HELPER'
+#!/bin/bash
+printf '\033[H\033[2J\033[3J\n'
+lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
+if [ -z "$lesson_num" ]; then
+    echo "No lesson is currently loaded."
+    exit 1
+fi
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
+HELPER
+
+cat > "$COURSE_DIR/next" <<'HELPER'
+#!/bin/bash
+printf '\033[H\033[2J\033[3J\n'
+lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
+if [ -z "$lesson_num" ]; then
+    echo "No lesson is currently loaded."
+    exit 1
+fi
+next_num=$((lesson_num + 1))
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
+HELPER
+
+chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
+printf '4\n' > "$COURSE_DIR/current_lesson"
+
+rm -rf "$WORKSPACE_DIR"
+mkdir -p "$WORKSPACE_DIR"
+
+cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
+============================================================
+LESSON 4 — PRINT WORKING DIRECTORY
+============================================================
+
+So far, you've typed commands without worrying about WHERE
+you are in the computer.
+
+But the terminal is always working inside a directory.
+
+A directory is another word for a folder.
+
+Think of the terminal as if you are standing inside one folder
+at a time.
+
+So how do you find out where you are?
+
+Use:
+
+    pwd
+
+pwd stands for:
+
+    Print Working Directory
+
+It displays the full path of the directory you are currently
+inside.
+
+------------------------------------------------------------
+TRY IT
+------------------------------------------------------------
+
+Type:
+
+    pwd
+
+Then press Enter.
+
+You should see a path showing your current location.
+
+Because this course starts inside the cli-course directory,
+your output should end with something like:
+
+    /cli-course
+
+A PATH describes a location in the filesystem.
+
+For example:
+
+    /home
+    /home/documents
+    /home/projects/python
+
+Each / separates one directory from another.
+
+------------------------------------------------------------
+YOUR TURN
+------------------------------------------------------------
+
+Run:
+
+    pwd
+
+Look carefully at the path that appears.
+
+Which directory are you currently inside?
+
+------------------------------------------------------------
+LESSON COMPLETE
+------------------------------------------------------------
+
+You now know:
+
+    echo    display text
+    #       write a comment
+    pwd     show your current directory
+
+The next Coddy lesson is:
+
+    List Files
+
+At any time, type:
+
+    ./lesson
+
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
+
+    ./resetlesson
+
+============================================================
+
+LESSON
+
+cd "$COURSE_DIR"
+printf '\033[H\033[2J\033[3J\n'
+cat "$COURSE_DIR/lesson.txt"
