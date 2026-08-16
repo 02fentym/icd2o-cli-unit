@@ -1,40 +1,34 @@
 #!/bin/bash
+
 COURSE_DIR="$HOME/cli-course"
-WORKSPACE_DIR="$COURSE_DIR/workspace"
-mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+
+# Start Lesson 1 with a completely clean course directory.
+rm -rf "$COURSE_DIR"
+mkdir -p "$COURSE_DIR"
+
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
 cat "$HOME/cli-course/lesson.txt"
 HELPER
+
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson1.sh" | bash
 HELPER
+
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-next_num=$((lesson_num + 1))
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" | bash
 HELPER
+
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-printf '1\n' > "$COURSE_DIR/current_lesson"
-rm -rf "$WORKSPACE_DIR"
-mkdir -p "$WORKSPACE_DIR"
+
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 1 — WHAT IS THE TERMINAL???
+LESSON 1 — WHAT IS THE TERMINAL?
 ============================================================
 
 Most of the time, you control a computer by clicking things:
@@ -90,6 +84,7 @@ If you need to restart this lesson, type:
 
 ============================================================
 LESSON
+
 cd "$COURSE_DIR"
 printf '\033[H\033[2J\033[3J\n'
 cat "$COURSE_DIR/lesson.txt"
