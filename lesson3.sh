@@ -1,6 +1,9 @@
 #!/bin/bash
 
 COURSE_DIR="$HOME/cli-course"
+
+# Start Lesson 3 with a completely clean course directory.
+rm -rf "$COURSE_DIR"
 mkdir -p "$COURSE_DIR"
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
@@ -18,7 +21,7 @@ HELPER
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh > "$HOME/cli-course/test1.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
 bash "$HOME/cli-course/test1.sh"
 HELPER
 
@@ -29,10 +32,10 @@ cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 LESSON 3 — COMMENTS
 ============================================================
 
-Not everything you type needs to be a command.
+Not everything you type in the terminal has to be a command.
 
-Sometimes you want to leave a note for yourself or for
-another person reading a shell script.
+Sometimes you want to write a note that the computer will
+ignore.
 
 These notes are called COMMENTS.
 
@@ -40,7 +43,7 @@ In Bash, a comment begins with:
 
     #
 
-Anything after the # on that line is ignored by the shell.
+Anything after the # is ignored by the shell.
 
 ------------------------------------------------------------
 TRY IT
@@ -54,7 +57,7 @@ Then press Enter.
 
 Nothing happens.
 
-That's because the shell ignores the comment.
+That's because the shell ignores comments.
 
 Now type:
 
@@ -65,31 +68,46 @@ You should see:
     Hello!
 
 ------------------------------------------------------------
-COMMENTS CAN EXPLAIN COMMANDS
+WHY USE COMMENTS?
 ------------------------------------------------------------
+
+Comments can explain what a command does.
 
 For example:
 
     # Display a greeting
     echo "Welcome!"
 
-The first line is for a human reader.
+The first line is a comment.
 
-The second line is a command the shell actually runs.
+The second line is a command.
 
-You can also place a comment after a command:
+The comment is for the person reading the code.
+The command is for the computer.
+
+------------------------------------------------------------
+COMMENTS AFTER COMMANDS
+------------------------------------------------------------
+
+A comment can also appear after a command.
+
+Try:
 
     echo "Welcome!" # Display a greeting
 
-The command still runs.
+You should still see:
 
-The comment is ignored.
+    Welcome!
+
+The command runs normally.
+
+Everything after the # is ignored.
 
 ------------------------------------------------------------
 YOUR TURN
 ------------------------------------------------------------
 
-Type a comment:
+Type this comment:
 
     # I am learning the CLI
 
@@ -101,24 +119,32 @@ Then use echo to display:
 INTRODUCTION COMPLETE
 ------------------------------------------------------------
 
-You've finished Lessons 1–3.
+You've finished the Introduction section.
 
-Before moving on, you'll complete a short test covering:
+You learned about:
 
-    What the terminal is
+    the terminal
+    commands
+    arguments
     echo
-    commands and arguments
     comments
+
+Next, you'll complete a short test on Lessons 1–3.
 
 Type:
 
     ./next
 
-to begin the test.
+to begin the Introduction Test.
 
-At any time:
+At any time, type:
 
     ./lesson
+
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
+
     ./resetlesson
 
 ============================================================
