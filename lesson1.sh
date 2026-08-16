@@ -108,3 +108,4 @@ LESSON
 cd "$COURSE_DIR"
 clear
 cat "$COURSE_DIR/lesson.txt"
+printf '\033[3J\033[2J\033[H'
