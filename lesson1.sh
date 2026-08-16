@@ -26,6 +26,7 @@ HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
+
 lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
 
 if [ -z "$lesson_num" ]; then
@@ -34,6 +35,9 @@ if [ -z "$lesson_num" ]; then
 fi
 
 next_num=$((lesson_num + 1))
+
+printf '\033[2J\033[H'
+
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
 HELPER
 
