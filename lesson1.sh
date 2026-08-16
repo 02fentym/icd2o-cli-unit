@@ -103,8 +103,8 @@ If you need to restart this lesson, type:
     ./resetlesson :)
 
 ============================================================
+
 LESSON
 
 cd "$COURSE_DIR"
-printf '\033[3J\033[2J\033[H'
 cat "$COURSE_DIR/lesson.txt"
