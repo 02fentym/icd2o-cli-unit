@@ -36,8 +36,6 @@ fi
 
 next_num=$((lesson_num + 1))
 
-printf '\033[2J\033[H'
-
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
 HELPER
 
