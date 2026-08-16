@@ -20,16 +20,11 @@ fi
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
 HELPER
 
+
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-next_num=$((lesson_num + 1))
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" | bash
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -43,11 +38,10 @@ cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 LESSON 3 — COMMENTS
 ============================================================
 
-Not everything you type into a shell script has to be a
-command.
+Not everything you type needs to be a command.
 
-Sometimes you want to leave a note for yourself or for another
-person reading the script.
+Sometimes you want to leave a note for yourself or for
+another person reading a shell script.
 
 These notes are called COMMENTS.
 
@@ -83,20 +77,22 @@ You should see:
 COMMENTS CAN EXPLAIN COMMANDS
 ------------------------------------------------------------
 
-Imagine you saw this:
+For example:
 
     # Display a greeting
     echo "Welcome!"
 
-The first line explains the code.
+The first line is for a human reader.
 
-The second line is the command the shell actually runs.
+The second line is a command the shell actually runs.
 
 You can also place a comment after a command:
 
     echo "Welcome!" # Display a greeting
 
-The command runs, but the comment is ignored.
+The command still runs.
+
+The comment is ignored.
 
 ------------------------------------------------------------
 YOUR TURN
@@ -111,27 +107,30 @@ Then use echo to display:
     Comments are useful!
 
 ------------------------------------------------------------
-WHEN YOU'RE READY
+INTRODUCTION COMPLETE
 ------------------------------------------------------------
+
+You've finished Lessons 1–3.
+
+Before moving on, you'll complete a short test covering:
+
+    What the terminal is
+    echo
+    commands and arguments
+    comments
 
 Type:
 
     ./next
 
-to continue to Lesson 4.
+to begin the test.
 
-At any time, type:
+At any time:
 
     ./lesson
-
-to clear the screen and show these instructions again.
-
-If you need to restart this lesson, type:
-
     ./resetlesson
 
 ============================================================
-
 LESSON
 
 cd "$COURSE_DIR"
