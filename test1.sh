@@ -82,13 +82,15 @@ curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson4.
 HELPER
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
-
 printf '\033[H\033[2J\033[3J\n'
-
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
-
 chmod +x "$HOME/cli-course/test1.sh"
-
 "$HOME/cli-course/test1.sh"
 HELPER
-chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/next"
+cat > "$COURSE_DIR/resetlesson" <<'HELPER'
+#!/bin/bash
+printf '\033[H\033[2J\033[3J\n'
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" | bash
+HELPER
+chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/next" "$COURSE_DIR/resetlesson"
+cd "$COURSE_DIR"
