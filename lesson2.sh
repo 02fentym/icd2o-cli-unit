@@ -1,35 +1,24 @@
 #!/bin/bash
 COURSE_DIR="$HOME/cli-course"
+# Start Lesson 2 with a completely clean course directory.
+rm -rf "$COURSE_DIR"
 mkdir -p "$COURSE_DIR"
-
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
 cat "$HOME/cli-course/lesson.txt"
 HELPER
-
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-if ! curl -fsSL "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" -o "$HOME/cli-course/lesson2.sh"; then
-    echo "Couldn't reach GitHub — check your internet connection and try again."
-    exit 1
-fi
-bash "$HOME/cli-course/lesson2.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" | bash
 HELPER
-
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-if ! curl -fsSL "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" -o "$HOME/cli-course/lesson3.sh"; then
-    echo "Couldn't reach GitHub — check your internet connection and try again."
-    exit 1
-fi
-bash "$HOME/cli-course/lesson3.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" | bash
 HELPER
-
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
 LESSON 2 — YOUR FIRST COMMAND
@@ -84,7 +73,6 @@ If you need to restart this lesson, type:
     ./resetlesson
 ============================================================
 LESSON
-
 cd "$COURSE_DIR"
 printf '\033[H\033[2J\033[3J\n'
 cat "$COURSE_DIR/lesson.txt"
