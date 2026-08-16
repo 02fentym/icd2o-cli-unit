@@ -18,7 +18,7 @@ HELPER
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
+curl -s https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh > "$HOME/cli-course/test1.sh"
 bash "$HOME/cli-course/test1.sh"
 HELPER
 
