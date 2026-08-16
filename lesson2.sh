@@ -1,20 +1,20 @@
 #!/bin/bash
 
-# ---------- Course helper setup ----------
-COURSE_DIR="$HOME/.cli-course"
-BIN_DIR="/usr/local/bin"
+COURSE_DIR="$HOME/cli-course"
+WORKSPACE_DIR="$COURSE_DIR/workspace"
 
-mkdir -p "$COURSE_DIR"
+mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
 
-cat > "$BIN_DIR/lesson" <<'HELPER'
+cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 clear
-cat "$HOME/.cli-course/lesson.txt"
+cat "$HOME/cli-course/lesson.txt"
 HELPER
 
-cat > "$BIN_DIR/resetlesson" <<'HELPER'
+cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
-lesson_num="$(cat "$HOME/.cli-course/current_lesson" 2>/dev/null)"
+lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
+
 if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
@@ -23,9 +23,10 @@ fi
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
 HELPER
 
-cat > "$BIN_DIR/next" <<'HELPER'
+cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
-lesson_num="$(cat "$HOME/.cli-course/current_lesson" 2>/dev/null)"
+lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
+
 if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
@@ -35,9 +36,12 @@ next_num=$((lesson_num + 1))
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
 HELPER
 
-chmod +x "$BIN_DIR/lesson" "$BIN_DIR/resetlesson" "$BIN_DIR/next"
+chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 printf '2\n' > "$COURSE_DIR/current_lesson"
+
+rm -rf "$WORKSPACE_DIR"
+mkdir -p "$WORKSPACE_DIR"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
@@ -107,8 +111,6 @@ Use echo to print:
 
     CLI is awesome!
 
-Don't copy the whole example above.
-
 Think about the pattern:
 
     command "argument"
@@ -119,16 +121,18 @@ WHEN YOU'RE READY
 
 Type:
 
-    next
+    ./next
 
 to continue to Lesson 3.
 
 At any time:
 
-    lesson        show these instructions again
-    resetlesson   reload this lesson
+    ./lesson        show these instructions again
+    ./resetlesson   restart this lesson
+
 ============================================================
 LESSON
 
+cd "$COURSE_DIR"
 clear
 cat "$COURSE_DIR/lesson.txt"
