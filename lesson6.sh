@@ -12,25 +12,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson6.sh" | bash
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-next_num=$((lesson_num + 1))
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" | bash
 HELPER
+
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 printf '6\n' > "$COURSE_DIR/current_lesson"
