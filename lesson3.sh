@@ -2,13 +2,9 @@
 
 # ---------- Course helper setup ----------
 COURSE_DIR="$HOME/.cli-course"
-BIN_DIR="$HOME/.local/bin"
-mkdir -p "$COURSE_DIR" "$BIN_DIR"
+BIN_DIR="/usr/local/bin"
 
-# Make ~/.local/bin available in future shells.
-if ! grep -Fq 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null; then
-    printf '\nexport PATH="$HOME/.local/bin:$PATH"\n' >> "$HOME/.bashrc"
-fi
+mkdir -p "$COURSE_DIR"
 
 cat > "$BIN_DIR/lesson" <<'HELPER'
 #!/bin/bash
@@ -23,6 +19,7 @@ if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
 fi
+
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
 HELPER
 
@@ -33,6 +30,7 @@ if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
 fi
+
 next_num=$((lesson_num + 1))
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
 HELPER
@@ -139,9 +137,7 @@ LESSON COMPLETE
 
 You've finished the first three introductory lessons.
 
-Next, Coddy's course begins filesystem navigation with:
-
-    pwd
+Next, you'll begin filesystem navigation.
 
 At any time:
 
