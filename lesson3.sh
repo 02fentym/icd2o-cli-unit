@@ -1,44 +1,38 @@
 #!/bin/bash
-
 COURSE_DIR="$HOME/cli-course"
 WORKSPACE_DIR="$COURSE_DIR/workspace"
-
 mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
-clear
+printf '\033[H\033[2J\033[3J\n'
 cat "$HOME/cli-course/lesson.txt"
 HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
-printf '\033[2J\033[H'
+printf '\033[H\033[2J\033[3J\n'
 lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-
 if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
 fi
-
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
+printf '\033[H\033[2J\033[3J\n'
 lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-
 if [ -z "$lesson_num" ]; then
     echo "No lesson is currently loaded."
     exit 1
 fi
-
 next_num=$((lesson_num + 1))
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-
 printf '3\n' > "$COURSE_DIR/current_lesson"
 
 rm -rf "$WORKSPACE_DIR"
@@ -49,16 +43,19 @@ cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 LESSON 3 — COMMENTS
 ============================================================
 
-Sometimes we want to write something in the terminal or in a
-shell script that is meant for HUMANS, not the computer.
+Not everything you type into a shell script has to be a
+command.
 
-That's what comments are for.
+Sometimes you want to leave a note for yourself or for another
+person reading the script.
 
-A comment begins with:
+These notes are called COMMENTS.
+
+In Bash, a comment begins with:
 
     #
 
-Everything after the # on that line is treated as a comment.
+Anything after the # on that line is ignored by the shell.
 
 ------------------------------------------------------------
 TRY IT
@@ -70,9 +67,9 @@ Type:
 
 Then press Enter.
 
-Notice that nothing is printed.
+Nothing happens.
 
-The shell ignores the comment.
+That's because the shell ignores the comment.
 
 Now type:
 
@@ -86,63 +83,42 @@ You should see:
 COMMENTS CAN EXPLAIN COMMANDS
 ------------------------------------------------------------
 
-A comment can describe what a command is doing.
+Imagine you saw this:
 
-For example:
-
-    # Print a greeting
+    # Display a greeting
     echo "Welcome!"
 
-The first line is for the person reading the commands.
+The first line explains the code.
 
-The second line is actually executed.
+The second line is the command the shell actually runs.
 
-------------------------------------------------------------
-COMMENTS CAN ALSO APPEAR AFTER A COMMAND
-------------------------------------------------------------
+You can also place a comment after a command:
 
-Try:
+    echo "Welcome!" # Display a greeting
 
-    echo "Hello!" # Print a greeting
-
-The echo command still runs.
-
-The part beginning with # is ignored.
-
-------------------------------------------------------------
-ONE SPECIAL COMMENT
-------------------------------------------------------------
-
-You may eventually see this at the top of a shell script:
-
-    #!/bin/bash
-
-This is called a SHEBANG.
-
-It tells the computer that the script should be run using Bash.
-
-We'll work with shell scripts later. For now, just recognize
-what this line means when you see it.
+The command runs, but the comment is ignored.
 
 ------------------------------------------------------------
 YOUR TURN
 ------------------------------------------------------------
 
-Enter a comment that says:
+Type a comment:
 
-    This is my first comment
+    # I am learning the CLI
 
-Then use echo on the next line to display:
+Then use echo to display:
 
-    Comments are ignored!
+    Comments are useful!
 
 ------------------------------------------------------------
-LESSON COMPLETE
+WHEN YOU'RE READY
 ------------------------------------------------------------
 
-You've finished the first three introductory lessons.
+Type:
 
-Next, you'll begin filesystem navigation.
+    ./next
+
+to continue to Lesson 4.
 
 At any time, type:
 
@@ -159,5 +135,5 @@ If you need to restart this lesson, type:
 LESSON
 
 cd "$COURSE_DIR"
-printf '\033[2J\033[H'
+printf '\033[H\033[2J\033[3J\n'
 cat "$COURSE_DIR/lesson.txt"
