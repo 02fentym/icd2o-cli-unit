@@ -13,7 +13,7 @@ HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
-clear
+printf '\033[2J\033[H'
 lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
 
 if [ -z "$lesson_num" ]; then
