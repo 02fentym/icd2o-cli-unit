@@ -138,7 +138,7 @@ to clear the screen and show these instructions again.
 
 If you need to restart this lesson, type:
 
-    ./resetlesson
+    ./resetlesson :)
 
 ============================================================
 
