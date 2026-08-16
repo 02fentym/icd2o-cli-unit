@@ -1,7 +1,7 @@
 #!/bin/bash
+
 COURSE_DIR="$HOME/cli-course"
-WORKSPACE_DIR="$COURSE_DIR/workspace"
-mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+mkdir -p "$COURSE_DIR"
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
@@ -12,18 +12,11 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" | bash
 HELPER
-
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
-
 printf '\033[H\033[2J\033[3J\n'
 
 curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
@@ -34,10 +27,6 @@ chmod +x "$HOME/cli-course/test1.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-printf '3\n' > "$COURSE_DIR/current_lesson"
-
-rm -rf "$WORKSPACE_DIR"
-mkdir -p "$WORKSPACE_DIR"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
