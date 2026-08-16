@@ -107,4 +107,5 @@ If you need to restart this lesson, type:
 LESSON
 
 cd "$COURSE_DIR"
+printf '\033[2J\033[H'
 cat "$COURSE_DIR/lesson.txt"
