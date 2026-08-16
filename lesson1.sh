@@ -46,7 +46,7 @@ mkdir -p "$WORKSPACE_DIR"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 1 — WHAT IS THE TERMINAL?
+LESSON 1 — WHAT IS THE TERMINAL???
 ============================================================
 
 Most of the time, you control a computer by clicking things:
