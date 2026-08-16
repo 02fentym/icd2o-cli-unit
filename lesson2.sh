@@ -13,6 +13,7 @@ HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
+printf '\033[2J\033[H'
 lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
 
 if [ -z "$lesson_num" ]; then
@@ -125,14 +126,20 @@ Type:
 
 to continue to Lesson 3.
 
-At any time:
+At any time, type:
 
-    ./lesson        show these instructions again
-    ./resetlesson   restart this lesson
+    ./lesson
+
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
+
+    ./resetlesson
 
 ============================================================
+
 LESSON
 
 cd "$COURSE_DIR"
-clear
+printf '\033[2J\033[H'
 cat "$COURSE_DIR/lesson.txt"
