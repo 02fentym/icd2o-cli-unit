@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 5 script.
+# Clean up files from the previous Navigation lesson,
+# but keep the current navigation2.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson5.sh" ]; then
+    if [ "$(basename "$item")" != "navigation2.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,15 +22,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson5.sh" > "$HOME/cli-course/lesson5.sh"
-bash "$HOME/cli-course/lesson5.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation2.sh" > "$HOME/cli-course/navigation2.sh"
+bash "$HOME/cli-course/navigation2.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson6.sh" > "$HOME/cli-course/lesson6.sh"
-bash "$HOME/cli-course/lesson6.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation3.sh" > "$HOME/cli-course/navigation3.sh"
+bash "$HOME/cli-course/navigation3.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -42,7 +42,7 @@ printf 'A sample document.\n' > "$COURSE_DIR/documents/report.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 5 — LIST FILES
+NAVIGATION 2 — LIST FILES
 ============================================================
 
 You already know how to ask:
@@ -128,7 +128,7 @@ You can combine the options:
 YOUR TURN
 ------------------------------------------------------------
 
-Try these four commands:
+Try:
 
     ls
     ls -l
@@ -145,7 +145,7 @@ Type:
 
     ./next
 
-to continue to Lesson 6.
+to continue to Navigation 3.
 
 At any time, type:
 
