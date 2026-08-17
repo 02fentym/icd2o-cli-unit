@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the previous Files lesson,
+# but keep the current files4.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "lesson13.sh" ]; then
+
+    if [ "$(basename "$item")" != "files4.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -19,15 +22,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson13.sh" > "$HOME/cli-course/lesson13.sh"
-bash "$HOME/cli-course/lesson13.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files4.sh" > "$HOME/cli-course/files4.sh"
+bash "$HOME/cli-course/files4.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson14.sh" > "$HOME/cli-course/lesson14.sh"
-bash "$HOME/cli-course/lesson14.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files5.sh" > "$HOME/cli-course/files5.sh"
+bash "$HOME/cli-course/files5.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -35,11 +38,11 @@ chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 mkdir -p "$COURSE_DIR/documents"
 printf 'Rename me.\n' > "$COURSE_DIR/oldname.txt"
 printf 'Move me.\n' > "$COURSE_DIR/report.txt"
-printf 'First draft.\n' > "$COURSE_DIR/draft.txt" 
+printf 'First draft.\n' > "$COURSE_DIR/draft.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 13 — MOVE AND RENAME A FILE
+FILES 4 — MOVE AND RENAME A FILE
 ============================================================
 
 Now let's learn:
@@ -115,7 +118,7 @@ Type:
 
     ./next
 
-to continue to Lesson 14.
+to continue to Files 5.
 
 At any time, type:
 
@@ -126,7 +129,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
