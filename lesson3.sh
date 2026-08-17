@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-SCRIPT_NAME="$(basename "$0")"
-
+# Clean up files from the previous lesson,
+# but keep the current Lesson 3 script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "$SCRIPT_NAME" ]; then
+    if [ "$(basename "$item")" != "lesson3.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,7 +22,8 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" > "$HOME/cli-course/lesson3.sh"
+bash "$HOME/cli-course/lesson3.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
