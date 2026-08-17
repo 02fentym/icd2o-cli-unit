@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the previous Files lesson,
+# but keep the current files3.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "lesson12.sh" ]; then
+
+    if [ "$(basename "$item")" != "files3.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -19,25 +22,25 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson12.sh" > "$HOME/cli-course/lesson12.sh"
-bash "$HOME/cli-course/lesson12.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files3.sh" > "$HOME/cli-course/files3.sh"
+bash "$HOME/cli-course/files3.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson13.sh" > "$HOME/cli-course/lesson13.sh"
-bash "$HOME/cli-course/lesson13.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files4.sh" > "$HOME/cli-course/files4.sh"
+bash "$HOME/cli-course/files4.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 printf 'This is the original file.\n' > "$COURSE_DIR/original.txt"
-printf 'These are some notes.\n' > "$COURSE_DIR/notes.txt" 
+printf 'These are some notes.\n' > "$COURSE_DIR/notes.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 12 — COPY A FILE
+FILES 3 — COPY A FILE
 ============================================================
 
 Now let's make a COPY of a file.
@@ -113,7 +116,7 @@ Type:
 
     ./next
 
-to continue to Lesson 13.
+to continue to Files 4.
 
 At any time, type:
 
@@ -124,7 +127,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
