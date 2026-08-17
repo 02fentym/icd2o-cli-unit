@@ -1,7 +1,17 @@
 #!/bin/bash
+
 COURSE_DIR="$HOME/cli-course"
-WORKSPACE_DIR="$COURSE_DIR/workspace"
-mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+mkdir -p "$COURSE_DIR"
+
+# Clean up files from the previous lesson,
+# but keep the current Lesson 9 script.
+for item in "$COURSE_DIR"/*; do
+    [ -e "$item" ] || continue
+
+    if [ "$(basename "$item")" != "lesson9.sh" ]; then
+        rm -rf "$item"
+    fi
+done
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
@@ -12,39 +22,23 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${lesson_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson9.sh" > "$HOME/cli-course/lesson9.sh"
+bash "$HOME/cli-course/lesson9.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-lesson_num="$(cat "$HOME/cli-course/current_lesson" 2>/dev/null)"
-if [ -z "$lesson_num" ]; then
-    echo "No lesson is currently loaded."
-    exit 1
-fi
-next_num=$((lesson_num + 1))
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson${next_num}.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test2.sh" > "$HOME/cli-course/test2.sh"
+bash "$HOME/cli-course/test2.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-printf '9\n' > "$COURSE_DIR/current_lesson"
 
-rm -rf "$WORKSPACE_DIR"
-mkdir -p "$WORKSPACE_DIR"
-
-
-rm -rf "$COURSE_DIR/documents"
 mkdir -p "$COURSE_DIR/documents"
 printf 'Math homework\n' > "$COURSE_DIR/documents/homework.txt"
 printf 'Project ideas\n' > "$COURSE_DIR/documents/ideas.txt"
 printf 'Class notes\n' > "$COURSE_DIR/documents/notes.txt"
-
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
@@ -130,23 +124,31 @@ You now know how to:
     .            refer to the current directory
     ..           refer to the parent directory
 
-The next Coddy section is:
+You've finished the Navigation section.
 
-    FILES
+Next, you'll complete a short test on Lessons 4–9.
 
-where you'll begin creating, reading, copying, moving,
-renaming, and deleting files.
+Before starting the test, make sure you're back inside:
 
-To see this lesson again:
+    cd ~/cli-course
+
+Then type:
+
+    ./next
+
+to begin the Navigation Test.
+
+At any time, type:
 
     ./lesson
 
-To restart it:
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
 
     ./resetlesson
 
 ============================================================
-
 LESSON
 
 cd "$COURSE_DIR"
