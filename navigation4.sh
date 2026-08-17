@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 7 script.
+# Clean up files from the previous Navigation lesson,
+# but keep the current navigation4.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson7.sh" ]; then
+    if [ "$(basename "$item")" != "navigation4.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,15 +22,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" > "$HOME/cli-course/lesson7.sh"
-bash "$HOME/cli-course/lesson7.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation4.sh" > "$HOME/cli-course/navigation4.sh"
+bash "$HOME/cli-course/navigation4.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson8.sh" > "$HOME/cli-course/lesson8.sh"
-bash "$HOME/cli-course/lesson8.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation5.sh" > "$HOME/cli-course/navigation5.sh"
+bash "$HOME/cli-course/navigation5.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -41,7 +41,7 @@ printf 'Navigation practice.\n' > "$COURSE_DIR/documents/notes.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 7 — ABSOLUTE VS RELATIVE PATHS
+NAVIGATION 4 — ABSOLUTE VS RELATIVE PATHS
 ============================================================
 
 A PATH tells the shell where something is located.
@@ -60,14 +60,6 @@ An absolute path starts from the very top of the filesystem.
 It begins with:
 
     /
-
-For example, if your course directory is located at:
-
-    /home/cli-course
-
-then this is an absolute path:
-
-    /home/cli-course/documents
 
 An absolute path describes the full location.
 
@@ -89,8 +81,6 @@ you can move into documents with:
 
 You don't need the entire path.
 
-The shell interprets "documents" relative to where you are now.
-
 ------------------------------------------------------------
 SPECIAL RELATIVE PATHS
 ------------------------------------------------------------
@@ -103,7 +93,7 @@ which means:
 
     parent directory
 
-There is another useful symbol:
+Another useful symbol is:
 
     .
 
@@ -123,47 +113,14 @@ means essentially the same thing as:
 TRY IT
 ------------------------------------------------------------
 
-From ~/cli-course, type:
+From ~/cli-course:
 
     cd documents
     pwd
-
-That's a RELATIVE path.
-
-Now return:
-
     cd ..
-
-Try:
-
     cd ./documents
     pwd
-
-Again, that's relative.
-
-Then return:
-
     cd ..
-
-------------------------------------------------------------
-YOUR TURN
-------------------------------------------------------------
-
-Starting from ~/cli-course:
-
-1. Enter documents using:
-
-       cd documents
-
-2. Return using:
-
-       cd ..
-
-3. Enter documents again using:
-
-       cd ./documents
-
-4. Return to the course directory.
 
 ------------------------------------------------------------
 WHEN YOU'RE READY
@@ -177,16 +134,11 @@ Then type:
 
     ./next
 
-to continue to Lesson 8.
+to continue to Navigation 5.
 
-At any time, type:
+At any time:
 
     ./lesson
-
-to clear the screen and show these instructions again.
-
-If you need to restart this lesson, type:
-
     ./resetlesson
 
 ============================================================
