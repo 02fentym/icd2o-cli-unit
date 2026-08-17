@@ -1,7 +1,17 @@
 #!/bin/bash
+
 COURSE_DIR="$HOME/cli-course"
-WORKSPACE_DIR="$COURSE_DIR/workspace"
-mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+mkdir -p "$COURSE_DIR"
+
+# Clean up files from the previous lesson,
+# but keep the current Lesson 7 script.
+for item in "$COURSE_DIR"/*; do
+    [ -e "$item" ] || continue
+
+    if [ "$(basename "$item")" != "lesson7.sh" ]; then
+        rm -rf "$item"
+    fi
+done
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
@@ -12,26 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" > "$HOME/cli-course/lesson7.sh"
+bash "$HOME/cli-course/lesson7.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson8.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson8.sh" > "$HOME/cli-course/lesson8.sh"
+bash "$HOME/cli-course/lesson8.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-printf '7\n' > "$COURSE_DIR/current_lesson"
 
-rm -rf "$WORKSPACE_DIR"
-mkdir -p "$WORKSPACE_DIR"
-
-
-rm -rf "$COURSE_DIR/documents" "$COURSE_DIR/projects"
-mkdir -p "$COURSE_DIR/documents" "$COURSE_DIR/projects/python"
+mkdir -p "$COURSE_DIR/documents"
+mkdir -p "$COURSE_DIR/projects/python"
 printf 'Navigation practice.\n' > "$COURSE_DIR/documents/notes.txt"
-
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
@@ -173,13 +179,17 @@ Then type:
 
 to continue to Lesson 8.
 
-At any time:
+At any time, type:
 
     ./lesson
+
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
+
     ./resetlesson
 
 ============================================================
-
 LESSON
 
 cd "$COURSE_DIR"
