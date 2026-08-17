@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 4 script.
+# Clean up files from the previous section,
+# but keep the current navigation1.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson4.sh" ]; then
+    if [ "$(basename "$item")" != "navigation1.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,22 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson4.sh" > "$HOME/cli-course/lesson4.sh"
-bash "$HOME/cli-course/lesson4.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation1.sh" > "$HOME/cli-course/navigation1.sh"
+bash "$HOME/cli-course/navigation1.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson5.sh" > "$HOME/cli-course/lesson5.sh"
-bash "$HOME/cli-course/lesson5.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation2.sh" > "$HOME/cli-course/navigation2.sh"
+bash "$HOME/cli-course/navigation2.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 4 — PRINT WORKING DIRECTORY
+NAVIGATION 1 — PRINT WORKING DIRECTORY
 ============================================================
 
 The terminal is always working inside a directory.
@@ -113,7 +113,7 @@ Type:
 
     ./next
 
-to continue to Lesson 5.
+to continue to Navigation 2.
 
 At any time, type:
 
