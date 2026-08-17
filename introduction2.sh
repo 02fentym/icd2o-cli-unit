@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-SCRIPT_NAME="$(basename "$0")"
-
+# Clean up files from the previous Introduction lesson,
+# but keep the current introduction2.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "$SCRIPT_NAME" ]; then
+    if [ "$(basename "$item")" != "introduction2.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,20 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction2.sh" > "$HOME/cli-course/introduction2.sh"
+bash "$HOME/cli-course/introduction2.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction3.sh" > "$HOME/cli-course/introduction3.sh"
+bash "$HOME/cli-course/introduction3.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 2 — YOUR FIRST COMMAND
+INTRODUCTION 2 — YOUR FIRST COMMAND
 ============================================================
 
 In the last lesson, you used:
@@ -111,7 +113,7 @@ Type:
 
     ./next
 
-to continue to Lesson 3.
+to continue to Introduction 3.
 
 At any time, type:
 
