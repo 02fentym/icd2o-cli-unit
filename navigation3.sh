@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 6 script.
+# Clean up files from the previous Navigation lesson,
+# but keep the current navigation3.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson6.sh" ]; then
+    if [ "$(basename "$item")" != "navigation3.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,15 +22,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson6.sh" > "$HOME/cli-course/lesson6.sh"
-bash "$HOME/cli-course/lesson6.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation3.sh" > "$HOME/cli-course/navigation3.sh"
+bash "$HOME/cli-course/navigation3.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" > "$HOME/cli-course/lesson7.sh"
-bash "$HOME/cli-course/lesson7.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation4.sh" > "$HOME/cli-course/navigation4.sh"
+bash "$HOME/cli-course/navigation4.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -40,7 +40,7 @@ printf 'A sample document.\n' > "$COURSE_DIR/documents/report.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 6 — CHANGE DIRECTORY
+NAVIGATION 3 — CHANGE DIRECTORY
 ============================================================
 
 So far, you've stayed in one place.
@@ -65,15 +65,13 @@ For example:
 TRY IT
 ------------------------------------------------------------
 
-First, make sure you're in the course directory:
+First:
 
     pwd
 
 Now type:
 
     cd documents
-
-Your prompt may change slightly.
 
 Check your location:
 
@@ -95,7 +93,7 @@ Try it:
 
     cd ..
 
-Then check:
+Then:
 
     pwd
 
@@ -104,24 +102,10 @@ You should be back inside:
     cli-course
 
 ------------------------------------------------------------
-A USEFUL PATTERN
-------------------------------------------------------------
-
-When you're exploring, these three commands work well together:
-
-    ls
-    cd directory_name
-    pwd
-
-First see what's there.
-Then move.
-Then confirm where you are.
-
-------------------------------------------------------------
 YOUR TURN
 ------------------------------------------------------------
 
-Try this sequence:
+Try:
 
     ls
     cd documents
@@ -134,7 +118,7 @@ Try this sequence:
 WHEN YOU'RE READY
 ------------------------------------------------------------
 
-Make sure you're back in the course directory:
+Make sure you're back inside:
 
     cd ~/cli-course
 
@@ -142,16 +126,11 @@ Then type:
 
     ./next
 
-to continue to Lesson 7.
+to continue to Navigation 4.
 
-At any time, type:
+At any time:
 
     ./lesson
-
-to clear the screen and show these instructions again.
-
-If you need to restart this lesson, type:
-
     ./resetlesson
 
 ============================================================
