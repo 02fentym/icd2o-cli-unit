@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Start Lesson 1 with a completely clean course directory.
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-SCRIPT_NAME="$(basename "$0")"
-
+# Start the Introduction section with a completely clean
+# course directory, but keep the current introduction1.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "$SCRIPT_NAME" ]; then
+    if [ "$(basename "$item")" != "introduction1.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -23,20 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson1.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction1.sh" > "$HOME/cli-course/introduction1.sh"
+bash "$HOME/cli-course/introduction1.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson2.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction2.sh" > "$HOME/cli-course/introduction2.sh"
+bash "$HOME/cli-course/introduction2.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 1 — WHAT IS THE TERMINAL?
+INTRODUCTION 1 — WHAT IS THE TERMINAL?
 ============================================================
 
 Most of the time, you control a computer by clicking things:
@@ -78,7 +79,7 @@ Type:
 
     ./next
 
-to continue to Lesson 2.
+to continue to Introduction 2.
 
 At any time, type:
 
