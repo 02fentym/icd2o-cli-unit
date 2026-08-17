@@ -1,7 +1,17 @@
 #!/bin/bash
+
 COURSE_DIR="$HOME/cli-course"
-WORKSPACE_DIR="$COURSE_DIR/workspace"
-mkdir -p "$COURSE_DIR" "$WORKSPACE_DIR"
+mkdir -p "$COURSE_DIR"
+
+# Clean up files from the previous lesson,
+# but keep the current Lesson 6 script.
+for item in "$COURSE_DIR"/*; do
+    [ -e "$item" ] || continue
+
+    if [ "$(basename "$item")" != "lesson6.sh" ]; then
+        rm -rf "$item"
+    fi
+done
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
@@ -12,27 +22,21 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson6.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson6.sh" > "$HOME/cli-course/lesson6.sh"
+bash "$HOME/cli-course/lesson6.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson7.sh" > "$HOME/cli-course/lesson7.sh"
+bash "$HOME/cli-course/lesson7.sh"
 HELPER
 
-
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
-printf '6\n' > "$COURSE_DIR/current_lesson"
 
-rm -rf "$WORKSPACE_DIR"
-mkdir -p "$WORKSPACE_DIR"
-
-
-rm -rf "$COURSE_DIR/documents"
 mkdir -p "$COURSE_DIR/documents"
 printf 'A sample document.\n' > "$COURSE_DIR/documents/report.txt"
-
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
@@ -140,13 +144,17 @@ Then type:
 
 to continue to Lesson 7.
 
-At any time:
+At any time, type:
 
     ./lesson
+
+to clear the screen and show these instructions again.
+
+If you need to restart this lesson, type:
+
     ./resetlesson
 
 ============================================================
-
 LESSON
 
 cd "$COURSE_DIR"
