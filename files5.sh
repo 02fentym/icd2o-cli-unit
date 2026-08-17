@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the previous Files lesson,
+# but keep the current files5.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "lesson14.sh" ]; then
+
+    if [ "$(basename "$item")" != "files5.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -19,26 +22,26 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson14.sh" > "$HOME/cli-course/lesson14.sh"
-bash "$HOME/cli-course/lesson14.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files5.sh" > "$HOME/cli-course/files5.sh"
+bash "$HOME/cli-course/files5.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson15.sh" > "$HOME/cli-course/lesson15.sh"
-bash "$HOME/cli-course/lesson15.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files6.sh" > "$HOME/cli-course/files6.sh"
+bash "$HOME/cli-course/files6.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 printf 'Delete this file.\n' > "$COURSE_DIR/delete-me.txt"
 printf 'Temporary file.\n' > "$COURSE_DIR/temporary.txt"
-printf 'Old notes.\n' > "$COURSE_DIR/old-notes.txt" 
+printf 'Old notes.\n' > "$COURSE_DIR/old-notes.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 14 — DELETE A FILE
+FILES 5 — DELETE A FILE
 ============================================================
 
 Now let's delete a file.
@@ -110,7 +113,7 @@ Type:
 
     ./next
 
-to continue to Lesson 15.
+to continue to Files 6.
 
 At any time, type:
 
@@ -121,7 +124,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
