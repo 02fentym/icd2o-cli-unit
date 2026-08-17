@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from Lesson 20,
-# but keep the current Test 4 script.
+# Clean up files from the Directories section,
+# but keep the current test script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "test4.sh" ]; then
+    if [ "$(basename "$item")" != "directories_test.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -16,7 +16,7 @@ done
 printf '\033[H\033[2J\033[3J\n'
 
 echo "============================================================"
-echo "DIRECTORIES TEST - LESSONS 16-20"
+echo "DIRECTORIES TEST"
 echo "============================================================"
 echo
 echo "This is a short check of what you have learned."
@@ -100,13 +100,13 @@ if [ "$score" -eq "$total" ]; then
 elif [ "$score" -ge 5 ]; then
     echo "Nice work!"
 else
-    echo "You may want to review Lessons 16-20 before continuing."
+    echo "You may want to review the Directories section before continuing."
 fi
 
 echo
 echo "You've finished the Directories section."
 echo
-echo "When you're ready for Lesson 21, type:"
+echo "When you're ready for Photo Project 1, type:"
 echo
 echo "    ./next"
 echo
@@ -115,22 +115,22 @@ echo "============================================================"
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson21.sh" > "$HOME/cli-course/lesson21.sh"
-bash "$HOME/cli-course/lesson21.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/photo_project1.sh" > "$HOME/cli-course/photo_project1.sh"
+bash "$HOME/cli-course/photo_project1.sh"
 HELPER
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test4.sh" > "$HOME/cli-course/test4.sh"
-bash "$HOME/cli-course/test4.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories_test.sh" > "$HOME/cli-course/directories_test.sh"
+bash "$HOME/cli-course/directories_test.sh"
 HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test4.sh" > "$HOME/cli-course/test4.sh"
-bash "$HOME/cli-course/test4.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories_test.sh" > "$HOME/cli-course/directories_test.sh"
+bash "$HOME/cli-course/directories_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/next" "$COURSE_DIR/resetlesson"
