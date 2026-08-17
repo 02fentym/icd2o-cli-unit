@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 20 script.
+# Clean up files from the previous Directories lesson,
+# but keep the current directories5.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson20.sh" ]; then
+    if [ "$(basename "$item")" != "directories5.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,27 +22,28 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson20.sh" > "$HOME/cli-course/lesson20.sh"
-bash "$HOME/cli-course/lesson20.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories5.sh" > "$HOME/cli-course/directories5.sh"
+bash "$HOME/cli-course/directories5.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test4.sh" > "$HOME/cli-course/test4.sh"
-bash "$HOME/cli-course/test4.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories_test.sh" > "$HOME/cli-course/directories_test.sh"
+bash "$HOME/cli-course/directories_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 mkdir -p "$COURSE_DIR/project"
 printf 'Project file.\n' > "$COURSE_DIR/project/readme.txt"
+
 mkdir -p "$COURSE_DIR/remove-this"
-printf 'Temporary file.\n' > "$COURSE_DIR/remove-this/temp.txt" 
+printf 'Temporary file.\n' > "$COURSE_DIR/remove-this/temp.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 20 — RECAP: DIRECTORY OPERATIONS
+DIRECTORIES 5 — RECAP: DIRECTORY OPERATIONS
 ============================================================
 
 You've learned the core commands for working with directories:
@@ -121,7 +122,7 @@ DIRECTORIES COMPLETE
 
 You've finished the Directories section.
 
-Next, you'll complete a short test on Lessons 16–20.
+Next, you'll complete a short test on the Directories section.
 
 Type:
 
@@ -138,7 +139,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
