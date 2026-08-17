@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 16 script.
+# Clean up files from the previous section,
+# but keep the current directories1.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson16.sh" ]; then
+    if [ "$(basename "$item")" != "directories1.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,29 +22,27 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson16.sh" > "$HOME/cli-course/lesson16.sh"
-bash "$HOME/cli-course/lesson16.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories1.sh" > "$HOME/cli-course/directories1.sh"
+bash "$HOME/cli-course/directories1.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson17.sh" > "$HOME/cli-course/lesson17.sh"
-bash "$HOME/cli-course/lesson17.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories2.sh" > "$HOME/cli-course/directories2.sh"
+bash "$HOME/cli-course/directories2.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
-
-
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 16 — CREATE A DIRECTORY
+DIRECTORIES 1 — CREATE A DIRECTORY
 ============================================================
 
 You've already worked with files.
 
-Now let's create a DIRECTORY.
+Now let's create directories.
 
 A directory is another word for a folder.
 
@@ -62,17 +60,15 @@ TRY IT
 
 Type:
 
-    mkdir projects
+    mkdir practice
 
-Now list what is here:
+Now list the contents of the current directory:
 
     ls
 
 You should see:
 
-    projects
-
-You just created a directory.
+    practice
 
 ------------------------------------------------------------
 CREATE ANOTHER DIRECTORY
@@ -80,50 +76,56 @@ CREATE ANOTHER DIRECTORY
 
 Try:
 
-    mkdir photos
+    mkdir projects
 
 Then:
 
     ls
 
-You should now see both:
-
-    projects
-    photos
+You should now see both directories.
 
 ------------------------------------------------------------
-NESTED DIRECTORIES
+CREATE NESTED DIRECTORIES
 ------------------------------------------------------------
 
-You can create directories inside other directories.
+Sometimes you want to create several levels at once.
 
 Use:
 
-    mkdir -p school/computer-science
+    mkdir -p
 
-The -p option creates any missing directories in the path.
+For example:
 
-Now try:
+    mkdir -p school/cs
+
+This creates:
+
+    school
+        cs
+
+Try it.
+
+Then type:
 
     ls school
 
 You should see:
 
-    computer-science
+    cs
 
 ------------------------------------------------------------
 YOUR TURN
 ------------------------------------------------------------
 
-Create a directory named:
+Create:
 
-    music
+    homework
 
-Then use:
+Then create:
 
-    ls
+    classes/math
 
-to confirm that it exists.
+using mkdir -p.
 
 ------------------------------------------------------------
 WHEN YOU'RE READY
@@ -133,7 +135,7 @@ Type:
 
     ./next
 
-to continue to Lesson 17.
+to continue to Directories 2.
 
 At any time, type:
 
@@ -144,7 +146,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
