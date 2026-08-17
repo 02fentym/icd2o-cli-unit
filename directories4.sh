@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 19 script.
+# Clean up files from the previous Directories lesson,
+# but keep the current directories4.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson19.sh" ]; then
+    if [ "$(basename "$item")" != "directories4.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,46 +22,43 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson19.sh" > "$HOME/cli-course/lesson19.sh"
-bash "$HOME/cli-course/lesson19.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories4.sh" > "$HOME/cli-course/directories4.sh"
+bash "$HOME/cli-course/directories4.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson20.sh" > "$HOME/cli-course/lesson20.sh"
-bash "$HOME/cli-course/lesson20.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories5.sh" > "$HOME/cli-course/directories5.sh"
+bash "$HOME/cli-course/directories5.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 mkdir -p "$COURSE_DIR/empty-folder"
 mkdir -p "$COURSE_DIR/old-project"
-printf 'Old project file.\n' > "$COURSE_DIR/old-project/file.txt" 
+printf 'Old project file.\n' > "$COURSE_DIR/old-project/file.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 19 — DELETE A DIRECTORY
+DIRECTORIES 4 — DELETE A DIRECTORY
 ============================================================
 
-Now let's delete directories.
+There are two common ways to delete directories.
 
-There are two useful commands to know:
-
-    rmdir
-    rm -r
+The command you use depends on whether the directory is empty.
 
 ------------------------------------------------------------
 DELETE AN EMPTY DIRECTORY
 ------------------------------------------------------------
 
-rmdir removes an EMPTY directory.
+Use:
 
-There is already an empty directory named:
+    rmdir
 
-    empty-folder
+rmdir only removes EMPTY directories.
 
-Delete it:
+Try:
 
     rmdir empty-folder
 
@@ -69,25 +66,31 @@ Then:
 
     ls
 
-It should be gone.
+The directory should be gone.
 
 ------------------------------------------------------------
-WHAT IF THE DIRECTORY HAS FILES?
+DELETE A DIRECTORY WITH FILES
 ------------------------------------------------------------
 
-There is also a directory named:
+The directory:
 
     old-project
 
-Look inside:
+contains a file.
+
+Try:
 
     ls old-project
 
-It contains a file.
+You should see:
 
-If a directory is not empty, rmdir will not remove it.
+    file.txt
 
-For a directory and everything inside it, use:
+To delete the directory AND everything inside it, use:
+
+    rm -r
+
+Try:
 
     rm -r old-project
 
@@ -105,9 +108,9 @@ Be careful with:
 
     rm -r
 
-It can delete an entire directory and all of its contents.
+It removes an entire directory and everything inside it.
 
-Always check the name before pressing Enter.
+There is usually no Trash or Recycle Bin.
 
 ------------------------------------------------------------
 YOUR TURN
@@ -115,13 +118,11 @@ YOUR TURN
 
 Create an empty directory:
 
-    practice
+    mkdir temporary
 
-Then remove it with:
+Then remove it using:
 
-    rmdir practice
-
-Use ls to confirm it is gone.
+    rmdir temporary
 
 ------------------------------------------------------------
 WHEN YOU'RE READY
@@ -131,7 +132,7 @@ Type:
 
     ./next
 
-to continue to Lesson 20.
+to continue to Directories 5.
 
 At any time, type:
 
@@ -142,7 +143,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
