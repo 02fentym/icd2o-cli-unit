@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 9 script.
+# Clean up files from the previous Navigation lesson,
+# but keep the current navigation6.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson9.sh" ]; then
+    if [ "$(basename "$item")" != "navigation6.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,15 +22,15 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson9.sh" > "$HOME/cli-course/lesson9.sh"
-bash "$HOME/cli-course/lesson9.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation6.sh" > "$HOME/cli-course/navigation6.sh"
+bash "$HOME/cli-course/navigation6.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test2.sh" > "$HOME/cli-course/test2.sh"
-bash "$HOME/cli-course/test2.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation_test.sh" > "$HOME/cli-course/navigation_test.sh"
+bash "$HOME/cli-course/navigation_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
@@ -42,7 +42,7 @@ printf 'Class notes\n' > "$COURSE_DIR/documents/notes.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 9 — RECAP: FIND YOUR WAY
+NAVIGATION 6 — RECAP: FIND YOUR WAY
 ============================================================
 
 You've learned the core tools for navigating a filesystem:
@@ -60,8 +60,6 @@ You've also learned about:
     ~
     /
 
-Now let's put those skills together.
-
 ------------------------------------------------------------
 CHALLENGE
 ------------------------------------------------------------
@@ -72,25 +70,19 @@ Start inside:
 
 Your goal is to explore the documents directory.
 
-Do these steps WITHOUT copying a complete command sequence.
-
-1. Use a RELATIVE PATH to move into:
+1. Use a relative path to move into:
 
        documents
 
-2. List all of the files inside it.
+2. List the files.
 
 3. Print your current working directory.
 
-If you've done everything correctly, you should find:
+You should find:
 
     homework.txt
     ideas.txt
     notes.txt
-
-and your final path should end with:
-
-    /cli-course/documents
 
 ------------------------------------------------------------
 ONE MORE TRIP
@@ -104,31 +96,15 @@ Now:
 4. Confirm that you're at /.
 5. Return directly to ~/cli-course.
 
-Use the commands you've learned rather than looking back
-unless you need to.
-
 ------------------------------------------------------------
 NAVIGATION COMPLETE
 ------------------------------------------------------------
 
-You now know how to:
-
-    pwd          print your current location
-    ls           list files and directories
-    ls -l        show a detailed listing
-    ls -a        include hidden files
-    cd folder    enter a directory
-    cd ..        move to the parent directory
-    cd ~         go home
-    cd /         go to the root directory
-    .            refer to the current directory
-    ..           refer to the parent directory
-
 You've finished the Navigation section.
 
-Next, you'll complete a short test on Lessons 4–9.
+Next, you'll complete the Navigation Test.
 
-Before starting the test, make sure you're back inside:
+Make sure you're back inside:
 
     cd ~/cli-course
 
@@ -136,16 +112,11 @@ Then type:
 
     ./next
 
-to begin the Navigation Test.
+to begin the test.
 
-At any time, type:
+At any time:
 
     ./lesson
-
-to clear the screen and show these instructions again.
-
-If you need to restart this lesson, type:
-
     ./resetlesson
 
 ============================================================
