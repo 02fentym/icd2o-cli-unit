@@ -3,12 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
-# Clean up files from the previous lesson,
-# but keep the current Lesson 3 script.
+# Clean up files from the previous Introduction lesson,
+# but keep the current introduction3.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
 
-    if [ "$(basename "$item")" != "lesson3.sh" ]; then
+    if [ "$(basename "$item")" != "introduction3.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -22,22 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson3.sh" > "$HOME/cli-course/lesson3.sh"
-bash "$HOME/cli-course/lesson3.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction3.sh" > "$HOME/cli-course/introduction3.sh"
+bash "$HOME/cli-course/introduction3.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
-bash "$HOME/cli-course/test1.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction_test.sh" > "$HOME/cli-course/introduction_test.sh"
+bash "$HOME/cli-course/introduction_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 3 — COMMENTS
+INTRODUCTION 3 — COMMENTS
 ============================================================
 
 Not everything you type in the terminal has to be a command.
@@ -137,7 +137,8 @@ You learned about:
     echo
     comments
 
-Next, you'll complete a short test on Lessons 1–3.
+Next, you'll complete a short test on the Introduction
+section.
 
 Type:
 
