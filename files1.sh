@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the previous section,
+# but keep the current files1.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "lesson10.sh" ]; then
+
+    if [ "$(basename "$item")" != "files1.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -19,24 +22,22 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson10.sh" > "$HOME/cli-course/lesson10.sh"
-bash "$HOME/cli-course/lesson10.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files1.sh" > "$HOME/cli-course/files1.sh"
+bash "$HOME/cli-course/files1.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson11.sh" > "$HOME/cli-course/lesson11.sh"
-bash "$HOME/cli-course/lesson11.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files2.sh" > "$HOME/cli-course/files2.sh"
+bash "$HOME/cli-course/files2.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
-
-
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 10 — CREATE A FILE
+FILES 1 — CREATE A FILE
 ============================================================
 
 So far, you've learned how to move around the filesystem.
@@ -115,7 +116,7 @@ Type:
 
     ./next
 
-to continue to Lesson 11.
+to continue to Files 2.
 
 At any time, type:
 
@@ -126,7 +127,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
