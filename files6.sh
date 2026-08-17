@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the previous Files lesson,
+# but keep the current files6.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "lesson15.sh" ]; then
+
+    if [ "$(basename "$item")" != "files6.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -19,25 +22,25 @@ HELPER
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson15.sh" > "$HOME/cli-course/lesson15.sh"
-bash "$HOME/cli-course/lesson15.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files6.sh" > "$HOME/cli-course/files6.sh"
+bash "$HOME/cli-course/files6.sh"
 HELPER
 
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test3.sh" > "$HOME/cli-course/test3.sh"
-bash "$HOME/cli-course/test3.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files_test.sh" > "$HOME/cli-course/files_test.sh"
+bash "$HOME/cli-course/files_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
 
 printf 'Welcome to the file operations challenge!\n' > "$COURSE_DIR/message.txt"
-printf 'This file should be removed.\n' > "$COURSE_DIR/remove-me.txt" 
+printf 'This file should be removed.\n' > "$COURSE_DIR/remove-me.txt"
 
 cat > "$COURSE_DIR/lesson.txt" <<'LESSON'
 ============================================================
-LESSON 15 — RECAP: FILE OPERATIONS
+FILES 6 — RECAP: FILE OPERATIONS
 ============================================================
 
 You've learned the core commands for working with files:
@@ -97,13 +100,15 @@ You should NOT see:
 FILES COMPLETE
 ------------------------------------------------------------
 
-Next, you'll complete a short test on Lessons 10–15.
+You've finished the Files section.
+
+Next, you'll complete the Files Test.
 
 Type:
 
     ./next
 
-to begin the Files Test.
+to begin the test.
 
 At any time, type:
 
@@ -114,7 +119,6 @@ to clear the screen and show these instructions again.
 If you need to restart this lesson, type:
 
     ./resetlesson
-
 
 ============================================================
 LESSON
