@@ -1,10 +1,18 @@
 #!/bin/bash
 
-COURSE_DIR="$HOME/cli-course"
-
 # Start Lesson 1 with a completely clean course directory.
-rm -rf "$COURSE_DIR"
+COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
+
+SCRIPT_NAME="$(basename "$0")"
+
+for item in "$COURSE_DIR"/*; do
+    [ -e "$item" ] || continue
+
+    if [ "$(basename "$item")" != "$SCRIPT_NAME" ]; then
+        rm -rf "$item"
+    fi
+done
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
