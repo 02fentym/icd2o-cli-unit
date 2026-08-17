@@ -3,9 +3,12 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the Files section,
+# but keep the current files_test.sh script.
 for item in "$COURSE_DIR"/*; do
     [ -e "$item" ] || continue
-    if [ "$(basename "$item")" != "test3.sh" ]; then
+
+    if [ "$(basename "$item")" != "files_test.sh" ]; then
         rm -rf "$item"
     fi
 done
@@ -13,7 +16,7 @@ done
 printf '\033[H\033[2J\033[3J\n'
 
 echo "============================================================"
-echo "FILES TEST - LESSONS 10-15"
+echo "FILES TEST"
 echo "============================================================"
 echo
 echo "This is a short check of what you have learned."
@@ -97,13 +100,13 @@ if [ "$score" -eq "$total" ]; then
 elif [ "$score" -ge 5 ]; then
     echo "Nice work!"
 else
-    echo "You may want to review Lessons 10-15 before continuing."
+    echo "You may want to review the Files section before continuing."
 fi
 
 echo
 echo "You've finished the Files section."
 echo
-echo "When you're ready for Lesson 16, type:"
+echo "When you're ready for Directories 1, type:"
 echo
 echo "    ./next"
 echo
@@ -112,22 +115,22 @@ echo "============================================================"
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson16.sh" > "$HOME/cli-course/lesson16.sh"
-bash "$HOME/cli-course/lesson16.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/directories1.sh" > "$HOME/cli-course/directories1.sh"
+bash "$HOME/cli-course/directories1.sh"
 HELPER
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test3.sh" > "$HOME/cli-course/test3.sh"
-bash "$HOME/cli-course/test3.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files_test.sh" > "$HOME/cli-course/files_test.sh"
+bash "$HOME/cli-course/files_test.sh"
 HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test3.sh" > "$HOME/cli-course/test3.sh"
-bash "$HOME/cli-course/test3.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/files_test.sh" > "$HOME/cli-course/files_test.sh"
+bash "$HOME/cli-course/files_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/next" "$COURSE_DIR/resetlesson"
