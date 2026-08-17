@@ -3,10 +3,20 @@
 COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
+# Clean up files from the Introduction section,
+# but keep the current introduction_test.sh script.
+for item in "$COURSE_DIR"/*; do
+    [ -e "$item" ] || continue
+
+    if [ "$(basename "$item")" != "introduction_test.sh" ]; then
+        rm -rf "$item"
+    fi
+done
+
 printf '\033[H\033[2J\033[3J\n'
 
 echo "============================================================"
-echo "INTRODUCTION TEST - LESSONS 1-3"
+echo "INTRODUCTION TEST"
 echo "============================================================"
 echo
 echo "This is a short check of what you have learned so far."
@@ -86,11 +96,13 @@ if [ "$score" -eq "$total" ]; then
 elif [ "$score" -ge 4 ]; then
     echo "Nice work!"
 else
-    echo "You may want to review Lessons 1-3 before continuing."
+    echo "You may want to review the Introduction section before continuing."
 fi
 
 echo
-echo "When you're ready for Lesson 4, type:"
+echo "You've finished the Introduction section."
+echo
+echo "When you're ready for Navigation 1, type:"
 echo
 echo "    ./next"
 echo
@@ -99,23 +111,24 @@ echo "============================================================"
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/lesson4.sh" | bash
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/navigation1.sh" > "$HOME/cli-course/navigation1.sh"
+bash "$HOME/cli-course/navigation1.sh"
 HELPER
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
-chmod +x "$HOME/cli-course/test1.sh"
-"$HOME/cli-course/test1.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction_test.sh" > "$HOME/cli-course/introduction_test.sh"
+bash "$HOME/cli-course/introduction_test.sh"
 HELPER
 
 cat > "$COURSE_DIR/resetlesson" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/test1.sh" > "$HOME/cli-course/test1.sh"
-chmod +x "$HOME/cli-course/test1.sh"
-"$HOME/cli-course/test1.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/introduction_test.sh" > "$HOME/cli-course/introduction_test.sh"
+bash "$HOME/cli-course/introduction_test.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/next" "$COURSE_DIR/resetlesson"
+
+cd "$COURSE_DIR"
