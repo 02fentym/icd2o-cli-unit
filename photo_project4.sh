@@ -4,9 +4,9 @@ COURSE_DIR="$HOME/cli-course"
 mkdir -p "$COURSE_DIR"
 
 # Continue the final part of the Organize Photos Project.
-# Keep the student's organized photo directories and files.
+# Keep the student's organized photo directories and files,
+# and remove only the previous project script.
 rm -f "$COURSE_DIR/photo_project3.sh"
-rm -f "$COURSE_DIR/photo_project4.sh"
 
 cat > "$COURSE_DIR/lesson" <<'HELPER'
 #!/bin/bash
