@@ -51,15 +51,16 @@ ORGANIZE PHOTOS PROJECT 1 — PROJECT OVERVIEW
 
 You've learned how to work with files and directories.
 
-Now you'll put those skills together in a small project.
+Now you'll use those skills together in a small project.
 
-Your photo collection is a mess.
+Imagine you have a folder full of photos, but everything is
+mixed together.
 
 Type:
 
     ls
 
-You should see these files:
+You should see:
 
     beach.jpg
     birthday.jpg
@@ -69,44 +70,23 @@ You should see these files:
     soccer.jpg
     todo.txt
 
-Your job is to organize the photos into directories.
-
 ------------------------------------------------------------
-THE PLAN
+YOUR PROJECT
 ------------------------------------------------------------
 
-You will create three directories:
+Your goal is to organize this messy collection.
 
-    family
-    school
-    activities
+You'll complete the project one step at a time.
 
-Then you'll organize the photos like this:
+In the next few parts, you'll:
 
-    family
-        birthday.jpg
-        family.jpg
+    create directories
+    move files
+    clean up unnecessary files
 
-    school
-        concert.jpg
+You do NOT need to do any of that yet.
 
-    activities
-        beach.jpg
-        hiking.jpg
-        soccer.jpg
-
-Finally, you'll remove:
-
-    todo.txt
-
-------------------------------------------------------------
-IMPORTANT
-------------------------------------------------------------
-
-This project continues across several parts.
-
-Your files and directories will stay in place as you move
-through the project.
+For now, just look at the files you're starting with.
 
 ------------------------------------------------------------
 WHEN YOU'RE READY
@@ -116,7 +96,7 @@ Type:
 
     ./next
 
-to begin creating the directory structure.
+to begin Part 2.
 
 At any time, type:
 
