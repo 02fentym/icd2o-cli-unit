@@ -24,8 +24,8 @@ HELPER
 cat > "$COURSE_DIR/next" <<'HELPER'
 #!/bin/bash
 printf '\033[H\033[2J\033[3J\n'
-curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/congratulations.sh" > "$HOME/cli-course/congratulations.sh"
-bash "$HOME/cli-course/congratulations.sh"
+curl -s "https://raw.githubusercontent.com/02fentym/icd2o-cli-unit/main/finish.sh" > "$HOME/cli-course/finish.sh"
+bash "$HOME/cli-course/finish.sh"
 HELPER
 
 chmod +x "$COURSE_DIR/lesson" "$COURSE_DIR/resetlesson" "$COURSE_DIR/next"
